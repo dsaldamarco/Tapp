@@ -23,7 +23,7 @@ struct MacStatusWindowView: View {
                 Text("Tapp Mac Companion")
                     .font(.system(size: 20, weight: .bold, design: .rounded))
 
-                Text("Il tuo Mac è pronto per essere controllato dall'iPhone")
+                Text("Your Mac is ready to be controlled from your iPhone")
                     .font(.system(size: 13))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -41,12 +41,12 @@ struct MacStatusWindowView: View {
                         .shadow(color: (server.isClientConnected ? Color.green : Color.orange).opacity(0.6), radius: 4)
 
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(server.isClientConnected ? (server.connectedPeerName ?? "iPhone Connesso") : "In attesa di connessione...")
+                        Text(server.isClientConnected ? (server.connectedPeerName ?? "iPhone connected") : "Waiting for connection…")
                             .font(.system(size: 14, weight: .semibold, design: .rounded))
 
                         Text(server.isClientConnected
-                             ? "Connessione attiva: pronto a ricevere comandi"
-                             : "Apri Tapp sull'iPhone (Bluetooth o Wi-Fi attivo)")
+                             ? "Connected: ready to receive input"
+                             : "Open Tapp on your iPhone (Wi-Fi or Bluetooth on)")
                             .font(.system(size: 12))
                             .foregroundColor(.secondary)
                     }
@@ -65,12 +65,12 @@ struct MacStatusWindowView: View {
                             .foregroundColor(permissionManager.isAccessibilityGranted ? .green : .orange)
 
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(permissionManager.isAccessibilityGranted ? "Permesso Accessibilità: Concesso" : "Accessibilità richiesta")
+                            Text(permissionManager.isAccessibilityGranted ? "Accessibility permission granted" : "Accessibility required")
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
 
                             Text(permissionManager.isAccessibilityGranted
-                                 ? "Il Mac può ricevere input di tastiera e mouse"
-                                 : "Abilita Tapp in Impostazioni di Sistema per consentire mouse e tastiera")
+                                 ? "Your Mac can receive keyboard and mouse input"
+                                 : "Enable Tapp in System Settings to allow mouse and keyboard control")
                                 .font(.system(size: 12))
                                 .foregroundColor(.secondary)
                         }
@@ -80,7 +80,7 @@ struct MacStatusWindowView: View {
                         if permissionManager.isAccessibilityGranted {
                             HStack(spacing: 8) {
                                 Button(action: {}) {
-                                    Label("Concesso", systemImage: "checkmark")
+                                    Label("Granted", systemImage: "checkmark")
                                 }
                                 .buttonStyle(.bordered)
                                 .tint(.green)
@@ -92,15 +92,15 @@ struct MacStatusWindowView: View {
                                 }) {
                                     HStack(spacing: 4) {
                                         Image(systemName: "gearshape")
-                                        Text("Impostazioni")
+                                        Text("Settings")
                                     }
                                 }
                                 .buttonStyle(.bordered)
                                 .controlSize(.small)
-                                .help("Apri Impostazioni Privacy e Accessibilità del Mac")
+                                .help("Open Privacy & Security → Accessibility")
                             }
                         } else {
-                            Button("Apri Impostazioni") {
+                            Button("Open Settings") {
                                 permissionManager.openAccessibilityPrefs()
                             }
                             .buttonStyle(.borderedProminent)
@@ -111,19 +111,19 @@ struct MacStatusWindowView: View {
 
                     if !permissionManager.isAccessibilityGranted {
                         HStack(spacing: 12) {
-                            Text("Se l'hai già attivato nelle Impostazioni:")
+                            Text("Already enabled it in Settings?")
                                 .font(.system(size: 11))
                                 .foregroundColor(.secondary)
 
                             Spacer()
 
-                            Button("Ho già attivato") {
+                            Button("I've enabled it") {
                                 permissionManager.confirmManually()
                             }
                             .buttonStyle(.bordered)
                             .controlSize(.mini)
 
-                            Button("Riavvia App") {
+                            Button("Relaunch App") {
                                 permissionManager.relaunchApp()
                             }
                             .buttonStyle(.bordered)
@@ -143,20 +143,20 @@ struct MacStatusWindowView: View {
             HStack {
                 Image(systemName: "menubar.rectangle")
                     .foregroundColor(.secondary)
-                Text("Tapp è sempre attivo anche nella barra dei menu in alto a destra.")
+                Text("Tapp keeps running in the menu bar, top right.")
                     .font(.system(size: 11))
                     .foregroundColor(.secondary)
             }
 
             HStack {
-                Button("Chiudi finestra (resta nella Menu Bar)") {
+                Button("Close Window (keep in Menu Bar)") {
                     NSApp.keyWindow?.close()
                 }
                 .buttonStyle(.bordered)
 
                 Spacer()
 
-                Button("Esci da Tapp") {
+                Button("Quit Tapp") {
                     NSApp.terminate(nil)
                 }
                 .buttonStyle(.plain)

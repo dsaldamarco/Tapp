@@ -88,7 +88,7 @@ struct ControllerView: View {
                 Button {
                     keyboardVisible = true
                 } label: {
-                    Label("Mostra tastiera", systemImage: "keyboard")
+                    Label("Show Keyboard", systemImage: "keyboard")
                         .font(.system(size: 15, weight: .semibold, design: .rounded))
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity)
@@ -125,7 +125,7 @@ struct ControllerView: View {
             HStack(spacing: 6) {
                 Circle().fill(Color.green).frame(width: 7, height: 7)
                     .shadow(color: .green.opacity(0.8), radius: 3)
-                Text(connectionManager.connectedPeerName ?? "Connesso")
+                Text(connectionManager.connectedPeerName ?? "Connected")
                     .font(.system(size: 13, weight: .medium, design: .rounded))
                     .foregroundColor(.white.opacity(0.6))
                     .lineLimit(1)
@@ -206,7 +206,7 @@ private struct ModePicker: View {
     var body: some View {
         HStack(spacing: 2) {
             segment("Spacebar", icon: "space", mode: .spacebar)
-            segment("Tastiera", icon: "keyboard", mode: .keyboard)
+            segment("Keyboard", icon: "keyboard", mode: .keyboard)
         }
         .padding(3)
         .background(Capsule().fill(Color.white.opacity(0.1)))
@@ -245,43 +245,43 @@ private struct SettingsSheet: View {
             Form {
                 Section("Trackpad") {
                     VStack(alignment: .leading) {
-                        Text("Velocità puntatore")
+                        Text("Pointer speed")
                         Slider(value: $pointerSpeed, in: 0.6...3.5)
                     }
                     VStack(alignment: .leading) {
-                        Text("Velocità scroll")
+                        Text("Scroll speed")
                         Slider(value: $scrollSpeed, in: 0.5...4)
                     }
-                    Toggle("Scorrimento naturale", isOn: $naturalScroll)
-                    Button("Ripristina predefiniti") {
+                    Toggle("Natural scrolling", isOn: $naturalScroll)
+                    Button("Restore Defaults") {
                         pointerSpeed = TrackpadSettings.defaultPointerSpeed
                         scrollSpeed = TrackpadSettings.defaultScrollSpeed
                         naturalScroll = true
                     }
                 }
 
-                Section("Gesti") {
-                    gestureRow("hand.point.up.left", "1 dito", "Muovi il puntatore")
-                    gestureRow("hand.tap", "Tap", "Click sinistro (2 tap = doppio click)")
-                    gestureRow("hand.tap.fill", "Tap con 2 dita", "Click destro")
-                    gestureRow("arrow.up.and.down.and.arrow.left.and.right", "2 dita", "Scroll")
-                    gestureRow("hand.draw", "Tieni premuto e muovi", "Trascina / seleziona")
+                Section("Gestures") {
+                    gestureRow("hand.point.up.left", "1 finger", "Move the pointer")
+                    gestureRow("hand.tap", "Tap", "Left click (tap twice to double-click)")
+                    gestureRow("hand.tap.fill", "Two-finger tap", "Right click")
+                    gestureRow("arrow.up.and.down.and.arrow.left.and.right", "Two fingers", "Scroll")
+                    gestureRow("hand.draw", "Press, hold and move", "Drag / select")
                 }
 
                 Section {
-                    Button("Disconnetti", role: .destructive) {
+                    Button("Disconnect", role: .destructive) {
                         dismiss()
                         connectionManager.disconnect()
                     }
                 } footer: {
-                    Text("Connesso a \(connectionManager.connectedPeerName ?? "Mac")")
+                    Text("Connected to \(connectionManager.connectedPeerName ?? "Mac")")
                 }
             }
-            .navigationTitle("Impostazioni")
+            .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Fine") { dismiss() }
+                    Button("Done") { dismiss() }
                 }
             }
         }

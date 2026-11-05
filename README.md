@@ -14,8 +14,6 @@ Tapp is a pair of native SwiftUI apps, one for iOS and one for macOS. Your iPhon
 
 <p align="center"><sub>Keyboard mode · Spacebar mode · Connecting</sub></p>
 
-> The app's interface is in Italian.
-
 ---
 
 ## Features

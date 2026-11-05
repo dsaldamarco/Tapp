@@ -20,7 +20,7 @@ enum ConnectionState: Equatable {
 final class ConnectionManager: NSObject, ObservableObject {
     @Published var state: ConnectionState = .idle
     @Published var connectedPeerName: String?
-    /// True after the user tapped "Disconnetti" — suppresses auto-search.
+    /// True after the user tapped "Disconnect" — suppresses auto-search.
     @Published var manuallyDisconnected = false
 
     private let myPeerID = MCPeerID(displayName: UIDevice.current.name)

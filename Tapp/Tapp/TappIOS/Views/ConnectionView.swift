@@ -26,7 +26,7 @@ struct ConnectionView: View {
                     Text("Tapp")
                         .font(.system(size: 34, weight: .semibold, design: .rounded))
                         .foregroundColor(.white)
-                    Text("Tastiera e trackpad per il tuo Mac")
+                    Text("Keyboard & trackpad for your Mac")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
                         .foregroundColor(.white.opacity(0.45))
                 }
@@ -84,7 +84,7 @@ struct ConnectionView: View {
             Button(action: { connectionManager.startSearching() }) {
                 HStack(spacing: 10) {
                     Image(systemName: connectionManager.state == .idle ? "link" : "arrow.clockwise")
-                    Text(connectionManager.state == .idle ? "Connetti" : "Riprova").fontWeight(.semibold)
+                    Text(connectionManager.state == .idle ? "Connect" : "Try Again").fontWeight(.semibold)
                 }
                 .font(.system(size: 16, design: .rounded))
                 .foregroundColor(.black).frame(maxWidth: .infinity)
@@ -103,29 +103,29 @@ struct ConnectionView: View {
     }
     private var statusTitle: String {
         switch connectionManager.state {
-        case .idle: return "Pronto"
-        case .searching: return "Ricerca" + String(repeating: ".", count: dotCount)
-        case .connecting: return "Connessione" + String(repeating: ".", count: dotCount)
-        case .connected: return "Connesso"
-        case .failed: return "Non trovato"
+        case .idle: return "Ready"
+        case .searching: return "Searching" + String(repeating: ".", count: dotCount)
+        case .connecting: return "Connecting" + String(repeating: ".", count: dotCount)
+        case .connected: return "Connected"
+        case .failed: return "Not Found"
         }
     }
     private var mainMessage: String {
         switch connectionManager.state {
-        case .idle: return "Disconnesso"
-        case .searching: return "Cerco il tuo Mac"
-        case .connecting: return "Mac trovato"
-        case .connected: return "Connesso"
-        case .failed: return "Mac non trovato"
+        case .idle: return "Disconnected"
+        case .searching: return "Looking for your Mac"
+        case .connecting: return "Found your Mac"
+        case .connected: return "Connected"
+        case .failed: return "Mac not found"
         }
     }
     private var subMessage: String {
         switch connectionManager.state {
-        case .idle: return "Tocca Connetti per cercare di nuovo il Mac"
-        case .searching: return "Assicurati che Tapp sia aperto sul Mac\ne che Wi-Fi o Bluetooth siano attivi"
-        case .connecting: return "Connessione in corso…"
+        case .idle: return "Tap Connect to search for your Mac again"
+        case .searching: return "Make sure Tapp is running on your Mac\nand Wi-Fi or Bluetooth is on"
+        case .connecting: return "Establishing connection…"
         case .connected: return ""
-        case .failed: return "Assicurati che Tapp sia aperto sul Mac\ne che Wi-Fi o Bluetooth siano attivi"
+        case .failed: return "Make sure Tapp is running on your Mac\nand Wi-Fi or Bluetooth is on"
         }
     }
 }

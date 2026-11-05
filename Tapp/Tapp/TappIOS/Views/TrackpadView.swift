@@ -60,7 +60,7 @@ struct TrackpadView: View {
 
             if isDragLocked {
                 VStack {
-                    Label("Trascinamento", systemImage: "hand.draw.fill")
+                    Label("Dragging", systemImage: "hand.draw.fill")
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                         .foregroundColor(.accentColor)
                         .padding(.horizontal, 12).padding(.vertical, 6)
@@ -93,9 +93,9 @@ struct TrackpadView: View {
                 .foregroundColor(.white.opacity(0.18))
             HStack(spacing: 14) {
                 hint("hand.tap", "Click")
-                hint("hand.tap.fill", "2 dita: destro")
-                hint("arrow.up.and.down", "2 dita: scroll")
-                hint("hand.draw", "Tieni: trascina")
+                hint("hand.tap.fill", "2-finger tap: right")
+                hint("arrow.up.and.down", "2 fingers: scroll")
+                hint("hand.draw", "Hold: drag")
             }
         }
         .allowsHitTesting(false)

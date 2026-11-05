@@ -39,7 +39,7 @@ struct MenuBarView: View {
                         .font(.system(size: 13))
                         .foregroundColor(server.isClientConnected ? .primary : .secondary)
 
-                    Text(server.isClientConnected ? (server.connectedPeerName ?? "iPhone connected") : "Waiting for iPhone...")
+                    Text(server.isClientConnected ? (server.connectedPeerName ?? "iPhone connected") : "Waiting for iPhone…")
                         .font(.system(size: 13, design: .rounded))
                         .foregroundColor(server.isClientConnected ? .primary : .secondary)
                 }
@@ -49,7 +49,7 @@ struct MenuBarView: View {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 12))
                             .foregroundColor(.green)
-                        Text("Accessibilità concessa")
+                        Text("Accessibility granted")
                             .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.secondary)
 
@@ -60,13 +60,13 @@ struct MenuBarView: View {
                         }) {
                             HStack(spacing: 3) {
                                 Image(systemName: "gearshape")
-                                Text("Apri")
+                                Text("Open")
                             }
                             .font(.system(size: 10))
                         }
                         .buttonStyle(.bordered)
                         .controlSize(.mini)
-                        .help("Apri Impostazioni Privacy e Accessibilità")
+                        .help("Open Privacy & Security → Accessibility")
                     }
                 } else {
                     VStack(alignment: .leading, spacing: 6) {
@@ -74,7 +74,7 @@ struct MenuBarView: View {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .font(.system(size: 12))
                                 .foregroundColor(.orange)
-                            Button("Concedi Accessibilità") {
+                            Button("Grant Accessibility") {
                                 permissionManager.openAccessibilityPrefs()
                             }
                             .buttonStyle(.plain)
@@ -83,13 +83,13 @@ struct MenuBarView: View {
                         }
 
                         HStack(spacing: 8) {
-                            Button("Ho già attivato") {
+                            Button("I've enabled it") {
                                 permissionManager.confirmManually()
                             }
                             .buttonStyle(.bordered)
                             .controlSize(.mini)
 
-                            Button("Riavvia App") {
+                            Button("Relaunch App") {
                                 permissionManager.relaunchApp()
                             }
                             .buttonStyle(.bordered)
