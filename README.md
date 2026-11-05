@@ -109,3 +109,9 @@ To see the iOS interface in the Simulator without a Mac connected, launch a Debu
 ```bash
 xcrun simctl launch booted <bundle-id> -TappDemo
 ```
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE).
